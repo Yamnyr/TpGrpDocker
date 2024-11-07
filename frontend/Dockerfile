@@ -1,24 +1,27 @@
-# Utilisation de l'image Node.js pour construire l'application React
-FROM node:16 AS build
+# Utiliser une image de base Node.js
+FROM node:14-alpine as build
 
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copiez les fichiers package.json et package-lock.json
+# Copier les fichiers de l'application
 COPY package*.json ./
-RUN npm install
-
-# Copiez le reste du code source et construisez l'application React
 COPY . .
+
+# Installer les dépendances
+RUN npm ci
+
+# Construire l'application
 RUN npm run build
 
-# Utilisation d'un serveur léger pour servir l'application React
-FROM nginx:alpine
+# Utiliser une image légère de Nginx pour servir l'application
+FROM nginx:1.19-alpine
 
-# Copiez les fichiers de build générés par React dans le dossier nginx
+# Copier les fichiers de construction dans le conteneur Nginx
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose le port 80 pour l'application
+# Exposer le port 80
 EXPOSE 80
 
-# Lancer nginx
+# Démarrer Nginx
 CMD ["nginx", "-g", "daemon off;"]
