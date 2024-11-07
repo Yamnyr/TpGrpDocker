@@ -4,7 +4,7 @@ function MessageDisplay() {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/message')
+        fetch('http://localhost:5000/messages/1')
             .then(response => response.json())
             .then(data => {
                 setMessage(data.message);

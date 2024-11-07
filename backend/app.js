@@ -1,20 +1,27 @@
-// app.js
 const express = require('express');
-const cors = require('cors'); // Importer le package CORS
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
-const { sequelize } = require('./models'); // Importer l'instance de Sequelize
-const messageRoutes = require('./routes/messageRoutes'); // Importer les routes
+const { sequelize } = require('./models');
+const runSeeders = require('./seeders');
+const messageRoutes = require('./routes/messageRoutes');
 
+const db = require('./models');
 app.use(cors({ origin: 'http://localhost:8080' }));
-app.use(express.json()); // Middleware pour parser le corps des requêtes en JSON
+app.use(express.json());
 
-// Utiliser les routes pour les messages
 app.use('/messages', messageRoutes);
 
-// Synchroniser Sequelize et démarrer le serveur
-sequelize.sync({ force: false }).then(() => {
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
+db.sequelize.sync({ alter: false })
+    .then(async () => {
+        console.log('Base de données synchronisée');
+
+        await runSeeders();
+
+        app.listen(port, () => {
+            console.log(`Serveur en cours d'exécution sur le port ${port}`);
+        });
+    })
+    .catch((error) => {
+        console.error('Erreur de synchronisation de la base de données :', error);
     });
-});

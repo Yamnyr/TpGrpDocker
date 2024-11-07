@@ -1,13 +1,16 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
-        await queryInterface.bulkInsert('message', [{
-            message: 'Voici notre projet docker',
-            createdAt: new Date(),
-            updatedAt: new Date()
-        }], {});
+    async up (queryInterface, Sequelize) {
+        await queryInterface.bulkInsert('message', [
+            { message: 'Voici notre projet docker',
+                createdAt: new Date(),
+                updatedAt: new Date()},
+        ], {});
     },
 
-    down: async (queryInterface, Sequelize) => {
+    async down (queryInterface, Sequelize) {
         await queryInterface.bulkDelete('message', null, {});
     }
 };
