@@ -1,10 +1,30 @@
 version: "3.8"
 
 services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
   backend:
     build: ./backend
     ports:
       - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: database
     networks:
       - app-network
 
@@ -20,3 +40,7 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
