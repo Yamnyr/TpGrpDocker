@@ -9,7 +9,7 @@ COPY package*.json ./
 COPY . .
 
 # Installer les dépendances
-RUN npm i
+RUN npm ci
 
 # Construire l'application
 RUN npm run build
