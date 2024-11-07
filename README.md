@@ -21,17 +21,17 @@ Url des 2 images:
 Structure du fichier docker-compose.yml pour les 2 images stockées sur Docker Hub:
 
 services:
-backend:
-image: yamnyr02/tp-docker-backend:1.1
-ports: - "5000:5000"
-networks: - app-network
+  backend:
+    image: yamnyr02/tp-docker-backend:1.1
+    ports: - "5000:5000"
+    networks: - app-network
 
-frontend:
-image: yamnyr02/tp-docker-frontend:1.1
-ports: - "8080:80"
-depends_on: - backend
-networks: - app-network
+  frontend:
+    image: yamnyr02/tp-docker-frontend:1.1
+    ports: - "8080:80"
+    depends_on: - backend
+    networks: - app-network
 
 networks:
-app-network:
-driver: bridge
+  app-network:
+    driver: bridge
