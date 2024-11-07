@@ -9,7 +9,11 @@ COPY package*.json ./
 COPY . .
 
 # Installer les dépendances
+<<<<<<< HEAD
 RUN npm install
+=======
+RUN npm i
+>>>>>>> ea10777d92a7e7313b0a5f03bf2425fb449950fa
 
 # Construire l'application
 RUN npm run build
