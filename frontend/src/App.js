@@ -6,16 +6,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Bonjour et bienvenue sur notre projet Docker</p>
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
         <a
           className="App-link"
-          href="https://github.com/Yamnyr/TpGrpDocker/tree/main"
+          href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-           Quentin
-          - Corentin
-          - Marine
+          Learn React
         </a>
       </header>
     </div>
