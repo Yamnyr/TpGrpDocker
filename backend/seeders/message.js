@@ -1,13 +1,21 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
-        await queryInterface.bulkInsert('message', [{
-            message: 'Voici notre projet docker',
-            createdAt: new Date(),
-            updatedAt: new Date()
-        }], {});
+    async up (queryInterface, Sequelize) {
+        await queryInterface.bulkInsert('message', [
+            { message: 'Github',
+                lien: 'https://github.com/Yamnyr/TpGrpDocker',
+                createdAt: new Date(),
+                updatedAt: new Date()},
+            { message: 'Presentation',
+                lien: 'https://github.com/Yamnyr/TpGrpDocker',
+                createdAt: new Date(),
+                updatedAt: new Date()},
+        ], {});
     },
 
-    down: async (queryInterface, Sequelize) => {
+    async down (queryInterface, Sequelize) {
         await queryInterface.bulkDelete('message', null, {});
     }
 };

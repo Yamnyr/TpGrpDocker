@@ -1,11 +1,14 @@
 #!/bin/sh
 sed -i 's/\r//' wait-for-mysql.sh
 
-host="$1"
-shift
-until nc -z -v -w30 $host 3306; do
-  echo "Waiting for MySQL at $host:3306..."
-  sleep 1
+check_mysql() {
+  nc -z mysql 3306
+}
+
+until check_mysql; do
+  echo "MySQL n'est pas encore prêt - attente..."
+  sleep 2
 done
 
-exec "$@"
+echo "MySQL est prêt !"
+node app.js
