@@ -1,14 +1,19 @@
 services:
   backend:
     image: yamnyr02/tp-docker-backend:1.1
-    ports: - "5000:5000"
-    networks: - app-network
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
 
   frontend:
     image: yamnyr02/tp-docker-frontend:1.1
-    ports: - "8080:80"
-    depends_on: - backend
-    networks: - app-network
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
 
 networks:
   app-network:
