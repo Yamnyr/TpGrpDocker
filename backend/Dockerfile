@@ -12,11 +12,11 @@ RUN npm install
 
 
 COPY . .
-COPY wait-for-mysql.sh /wait-for-mysql.sh
-RUN chmod +x /wait-for-mysql.sh
+COPY wait-for-mysql.js /wait-for-mysql.js
+
 
 # Exposer le port 3000
 EXPOSE 5000
 
 # Utiliser le script wait-for-db.sh comme point d'entrée
-CMD ["/wait-for-mysql.sh"]
+CMD ["/wait-for-mysql.js"]
