@@ -30,7 +30,7 @@ async function resetDatabase() {
 async function startServer() {
     try {
         // Réinitialiser la base de données
-        await resetDatabase();
+        // await resetDatabase();
 
         // Démarrer le serveur
         app.listen(port, () => {
