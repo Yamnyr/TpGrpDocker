@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+sed -i 's/\r//' wait-for-mysql.sh
 
 host="$1"
 shift

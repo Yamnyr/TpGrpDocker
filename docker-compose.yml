@@ -27,7 +27,7 @@ services:
       MYSQL_DATABASE: database
     networks:
       - app-network
-    command: [ "./wait-for-mysql.sh", "mysql", "node", "app.js" ]
+    command: [ "sh","wait-for-mysql.sh", "mysql", "node", "app.js" ]
 
 
   frontend:
