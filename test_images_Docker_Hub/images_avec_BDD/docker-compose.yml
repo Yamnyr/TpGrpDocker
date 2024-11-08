@@ -1,0 +1,45 @@
+services:
+  backend:
+    image: yamnyr02/tp-docker-backend:1.2
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: database
+    networks:
+      - app-network
+    command: ["wait-for-mysql.js", "mysql", "node", "app.js"]
+
+  frontend:
+    image: yamnyr02/tp-docker-frontend:1.2
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

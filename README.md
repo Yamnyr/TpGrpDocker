@@ -12,28 +12,14 @@ Question 3: Comment pourrait-on étendre ce projet avec une base de données ou 
 
 Si nous voulons étendre ce projet avec une base de données ou un autre service sans avoir à tout reconfigurer, il suffirait simplement de rajouter un service dans le fichier docker-compose.yml, grâce à la structure modulaire de celui-ci, nous pouvons rajouter des services sans pour autant reconfigurer toute l'application.
 
-
-Url des 2 images:
+Url des 2 images sans BDD:
 
 - image backend = yamnyr02/tp-docker-backend:1.1
 - image frontend = yamnyr02/tp-docker-frontend:1.1
 
-Structure du fichier docker-compose.yml pour les 2 images stockées sur Docker Hub:
+Url des 2 images avec BDD:
 
-services:
-  backend:
-    image: yamnyr02/tp-docker-backend:1.1
-    ports: - "5000:5000"
-    networks: - app-network
-
-  frontend:
-    image: yamnyr02/tp-docker-frontend:1.1
-    ports: - "8080:80"
-    depends_on: - backend
-    networks: - app-network
-
-networks:
-  app-network:
-    driver: bridge
+- image backend = yamnyr02/tp-docker-backend:1.2
+- image frontend = yamnyr02/tp-docker-frontend:1.2
 
 Lien du Trello: https://trello.com/b/y6rg3OJ8/docker
