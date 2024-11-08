@@ -10,11 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-<<<<<<< HEAD
 
-=======
-# Copier tout le reste du projet
->>>>>>> 2bf0bd27dd44b54a644e3340b4316748c28098f8
 COPY . .
 COPY wait-for-mysql.sh /wait-for-mysql.sh
 RUN chmod +x /wait-for-mysql.sh
