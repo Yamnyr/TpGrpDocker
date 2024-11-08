@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
         message: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        lien: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     }, {
         tableName: 'message',

@@ -4,7 +4,12 @@
 module.exports = {
     async up (queryInterface, Sequelize) {
         await queryInterface.bulkInsert('message', [
-            { message: 'Voici notre projet docker',
+            { message: 'Github',
+                lien: 'https://github.com/Yamnyr/TpGrpDocker',
+                createdAt: new Date(),
+                updatedAt: new Date()},
+            { message: 'Presentation',
+                lien: 'https://github.com/Yamnyr/TpGrpDocker',
                 createdAt: new Date(),
                 updatedAt: new Date()},
         ], {});
